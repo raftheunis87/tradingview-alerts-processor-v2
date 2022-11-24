@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccountsModule } from './accounts/accounts.module';
+import { BybitModule } from './bybit/bybit.module';
+import { TradesModule } from './trades/trades.module';
 
 @Module({
   imports: [
@@ -11,6 +13,8 @@ import { AccountsModule } from './accounts/accounts.module';
       synchronize: true,
     }),
     AccountsModule,
+    BybitModule,
+    TradesModule,
   ],
   controllers: [],
   providers: [],
