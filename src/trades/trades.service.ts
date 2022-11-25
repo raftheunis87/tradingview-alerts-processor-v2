@@ -1,17 +1,27 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { AccountsService } from 'src/accounts/accounts.service';
+import { Injectable } from '@nestjs/common';
 import { BybitService } from 'src/bybit/bybit.service';
+import { Direction } from './direction.enum';
 import { CreateTradeDto } from './dto/create-trade.dto';
 
 @Injectable()
 export class TradesService {
-  private readonly logger = new Logger(TradesService.name);
-
   constructor(private bybitService: BybitService) {}
 
-  async create(createTradeDto: CreateTradeDto) {
+  async create(createTradeDto: CreateTradeDto): Promise<void> {
     const { stub, symbol, size, direction } = createTradeDto;
-    // TODO: open or close a position
 
+    if (Direction.LONG == direction) {
+      return this.bybitService.enterLongPosition(
+        stub,
+        symbol,
+        parseFloat(size),
+      );
+    }
+
+    if (Direction.CLOSE == direction) {
+      return this.bybitService.closeLongPosition(stub, symbol);
+    }
+
+    return;
   }
 }

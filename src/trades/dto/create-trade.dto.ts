@@ -1,4 +1,4 @@
-import { IsIn, IsLowercase, IsNotEmpty, IsString } from 'class-validator';
+import { IsIn, IsLowercase, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { Direction } from '../direction.enum';
 
 export class CreateTradeDto {
@@ -10,11 +10,11 @@ export class CreateTradeDto {
   @IsString()
   symbol: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   size: string;
 
-  @IsIn([Direction.LONG, Direction.SHORT])
+  @IsIn([Direction.LONG, Direction.CLOSE])
   @IsLowercase()
   @IsNotEmpty()
   @IsString()
