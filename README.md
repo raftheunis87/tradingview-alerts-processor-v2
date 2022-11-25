@@ -5,8 +5,12 @@ Minimalist service designed to execute [TradingView](https://www.tradingview.com
 ### 📦 Installation
 
 ```bash
+$ apt install npm
+$ npm install -g n
+$ n lts
+$ npm install -g npm
 $ npm install
-$ npm run start:prod
+$ npm run start
 ```
 
 ### 🚀 Usage
